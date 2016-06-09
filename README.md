@@ -1,13 +1,13 @@
 About
 ====
-    This is a simple spider that can help get prices sepecific items and store
-    the them in an EXCEL file. If the price has been changed, then the program
-    would automatically send an e-mail to notify the user.
+This is a simple spider that can help get prices sepecific items and store<br>
+the them in an EXCEL file. If the price has been changed, then the program<br>
+would automatically send an e-mail to notify the user.<br>
 
 Requirement
 ====
-    :-Python2.7-:
-    :-openpyxl-: $pip install openpyxl
+:-Python2.7-:<br>
+:-openpyxl-: $pip install openpyxl<br>
 
 Usage
 ====
