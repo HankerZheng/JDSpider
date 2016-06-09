@@ -3,6 +3,7 @@ About
 This is a simple spider that can help get prices sepecific items and store<br>
 the them in an EXCEL file. If the price has been changed, then the program<br>
 would automatically send an e-mail to notify the user.<br>
+Chinese character not supported!<br>
 
 Requirement
 ====
@@ -14,6 +15,7 @@ Setup
 * Create a new file named "item_list.txt" and fill it with the item you care about.
     * One item per line;
     * A simicolon(with a whitespace on its right side) sperates the item name on the right side and item website on the right side
+    * Only digits, English charcters, whitespace, underscore and hyphen are supported in the item name. Other characters are not supported by OFFICE EXCEL as sheet name.
     * One example is showed below:
 ```
 DUNU 2000 Gold; http://item.jd.com/1118888.html
