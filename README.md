@@ -7,19 +7,16 @@ would automatically send an e-mail to notify the user.<br>
 Requirement
 ====
 :-Python2.7-:<br>
-:-openpyxl-:  `$pip install openpyxl`<br>
+:-Openpyxl-: Install `$pip install openpyxl`<br>
 
 Usage
 ====
 1. Create a new file named "item_list.txt" and fill it with the item you care about.
-    1. One item per line;
-    2. A simicolon(with a whitespace on its right side) sperates the item name on the right side and item website on the right side
-    3. One example is showed below:
-
-    'DUNU 2000 Gold; http://item.jd.com/1118888.html'
+    * One item per line;
+    * A simicolon(with a whitespace on its right side) sperates the item name on the right side and item website on the right side
+    * One example is showed below:<br>`DUNU 2000 Gold; http://item.jd.com/1118888.html`
 
 2. Create a new file named "config.txt" with infomation listed below:
-
 ```javascript
 {
     "data": {
@@ -45,8 +42,7 @@ Usage
     }
 }
 ```
-
-items: File that stores the item information<br>
+>items: File that stores the item information<br>
 excel_file: Name of excel which collects the data<br>
 pduid: Value of the COOKIE named __jdu from www.jd.com<br>
 <br>
@@ -60,4 +56,4 @@ to_addr: E-mail address of the receiver<br>
 subject: Subject of the E-mail to be sent<br>
 timeout: Time wait for the server to response<br>
 
-3. $python JDSpider.py
+3. RUN $python JDSpider.py
