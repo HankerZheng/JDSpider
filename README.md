@@ -14,7 +14,12 @@ Usage
 1. Create a new file named "item_list.txt" and fill it with the item you care about.
     * One item per line;
     * A simicolon(with a whitespace on its right side) sperates the item name on the right side and item website on the right side
-    * One example is showed below:<br>`DUNU 2000 Gold; http://item.jd.com/1118888.html`
+    * One example is showed below:
+```
+DUNU 2000 Gold; http://item.jd.com/1118888.html
+GoPro HERO4 Silver Standard; http://item.jd.com/1328967.html
+Timberland Barstow Wedge; http://item.jd.hk/1952761316.html
+```
 
 2. Create a new file named "config.txt" with infomation listed below:
 ```javascript
