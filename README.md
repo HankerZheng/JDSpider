@@ -42,18 +42,20 @@ Usage
     }
 }
 ```
->items: File that stores the item information<br>
-excel_file: Name of excel which collects the data<br>
-pduid: Value of the COOKIE named __jdu from www.jd.com<br>
+>`items`: File that stores the item information<br>
+`excel_file`: Name of excel which collects the data<br>
+`pduid`: Value of the COOKIE named __jdu from www.jd.com<br>
 <br>
-refresh: Time interval of two access in second<br>
+`refresh`: Time interval of two access in second<br>
 <br>
-from_addr: E-mail address of the sender<br>
-host: SMTP host of the sender<br>
-port: SMTP port<br>
-password: Password of sender's e-mail<br>
-to_addr: E-mail address of the receiver<br>
-subject: Subject of the E-mail to be sent<br>
-timeout: Time wait for the server to response<br>
+`from_addr`: E-mail address of the sender<br>
+`host`: SMTP host of the sender<br>
+`port`: SMTP port<br>
+`password`: Password of sender's e-mail<br>
+`to_addr`: E-mail address of the receiver<br>
+`subject`: Subject of the E-mail to be sent<br>
+`timeout`: Time wait for the server to response<br>
 
-3. RUN $python JDSpider.py
+Run Code
+====
+After all above have been set, RUN `$python JDSpider.py`
