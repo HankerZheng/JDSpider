@@ -127,6 +127,8 @@ class ExcelOperation(object):
                     ws.append(data_append)
             else:
                 # not enough data to compare, just append the data
+                # after this append, the max_row of this wb has increased
+                last_price = ws.cell(row=ws.max_row, column=2)
                 data_append = {'A':self.time, 'B':price}
                 ws.append(data_append)
             # update count and average
@@ -135,7 +137,8 @@ class ExcelOperation(object):
             # Price has changed
             if ws.max_row > 3:
                 if price != last_price.value:
-                    res.update({item_name:price})
+                    content = "from %.2f to %.2f" % (last_price.value, price)
+                    res.update({item_name:content})
         return res
 
 

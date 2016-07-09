@@ -90,8 +90,8 @@ class SpiderEngine(object):
                 # price change notifier
                 if changed_prices:
                     self.notifier(changed_prices)
-                    for item_name, price in changed_prices:
-                        print "(%s)'s price"%item_name + 'has changed to %f'%price
+                    for item_name, content in changed_prices.iteritems():
+                        print "(%s)'s price"%item_name + 'has changed %s'% content
 
                 count += 1
                 # wait for another round
@@ -117,18 +117,20 @@ class SpiderEngine(object):
 
 
     def notifier(self, changed_prices):
+        print changed_prices
         res = []
         with open(_ITEM_LIST_FILE) as f:
             for line in f:
                 if line.split('; ')[0] in changed_prices.keys():
                     res.append(line)
-        res = [line.strip() + (" Price changed to %.2f" % changed_prices[line.split('; ')[0]]) for line in res]
+
+        res = [line.strip() + changed_prices[line.split('; ')[0]] for line in res]
         content = '    ' + '\n    '.join(res)
         email = SendEMail(content,  configs["e-mail"], configs["e-mail"]["subject"])
         try:
             email()
         except ValueError, e:
-            print 
+            print e
 
 if __name__ == '__main__':
     app = SpiderEngine()
