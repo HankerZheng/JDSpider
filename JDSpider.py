@@ -8,6 +8,12 @@ import json
 import re
 import time
 import urllib2
+import logging
+logging.basicConfig(level=logging.INFO,  
+                    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',  
+                    datefmt='%a, %d %b %Y %H:%M:%S',  
+                    filename='./local.log',  
+                    filemode='w')
 
 from notifier import SendEMail
 from excel_operations import ExcelOperation
@@ -77,7 +83,7 @@ class SpiderEngine(object):
         while True:
             lt = time.localtime()
             # Start Collecting Data @ 2016-06-08 15:17
-            print "Start Collecting Data @ " + time.strftime('%Y-%m-%d %H:%M:%S', lt)
+            logging.info("Start Collecting Data @ " + time.strftime('%Y-%m-%d %H:%M:%S', lt) )
             # Keyboard to terminate this program
             try:
                 # get prices and warp them in name_price_dict
@@ -89,16 +95,17 @@ class SpiderEngine(object):
                 changed_prices = excel()
                 # price change notifier
                 if changed_prices:
-                    self.notifier(changed_prices)
+                    logging.info("Price change detected:" % changed_prices)
                     for item_name, content in changed_prices.iteritems():
-                        print "(%s)'s price"%item_name + 'has changed %s'% content
+                        logging.info("(%s)'s price"%item_name + 'has changed %s'% content)
+                    self.notifier(changed_prices)
 
                 count += 1
                 # wait for another round
-                print "Finish the %d round of data collection" % count
+                logging.info("Finish the %d round of data collection" % count)
                 time.sleep(_REFRESH_TIME)
             except KeyboardInterrupt:
-                print 'Exit...'
+                logging.info('Exit...')
                 time.sleep(_WAIT_TIME)
                 break
             self.update()
@@ -111,26 +118,27 @@ class SpiderEngine(object):
         try:
             email_test()
         except ValueError, e:
-            print "Fail to pass the notifier test", e
+            logging.error("Fail to pass the notifier test %s" % e)
             return False
         return True
 
 
     def notifier(self, changed_prices):
-        print changed_prices
         res = []
         with open(_ITEM_LIST_FILE) as f:
             for line in f:
                 if line.split('; ')[0] in changed_prices.keys():
                     res.append(line)
 
+        logging.info("Start initialize E-mail...")
         res = [line.strip() + changed_prices[line.split('; ')[0]] for line in res]
         content = '    ' + '\n    '.join(res)
         email = SendEMail(content,  configs["e-mail"], configs["e-mail"]["subject"])
         try:
             email()
         except ValueError, e:
-            print e
+            logging.error("%s" % e)
+        logging.info("E-mail has been sent successfully...")
 
 if __name__ == '__main__':
     app = SpiderEngine()

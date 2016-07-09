@@ -28,7 +28,8 @@ All of above, below shows the prototype of the data collections.
 
 $AP = ($AP*$C+$CP)/($C+1)
 """
-import time  
+import time
+import logging
 
 from openpyxl import Workbook, load_workbook
 
@@ -81,6 +82,7 @@ class ExcelOperation(object):
 
         :rtype: initialized workbook
         """
+        logging.info("Create EXCEL file...")
         wb = Workbook()
         for item_name in self.data_dict.keys():
             name = item_name[:30]
